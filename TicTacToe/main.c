@@ -41,6 +41,20 @@ int einlesen(struct Spieler *aktuellerSpieler){ //einlesen der Feldkoordinate
     return iPosition;
 }
 
+int ueberpuefen1(int pos){  //Auf korrekte Eingabe Überprüfen
+    if(pos < 0){
+        return 1; //1 steht für "falsche Eingabe"
+    }
+    else if(pos > 9){
+        return 1;
+    }else if(pos ){
+        
+    }
+    else{
+        return 0;
+    }
+}
+
 
 int main(int argc, const char * argv[]) {
     printf("Welcome to TictacToe in C \n");
@@ -62,8 +76,17 @@ int main(int argc, const char * argv[]) {
     spieler1.cZeichen = 'O';
     spieler1.iIndexer = 2;
     struct Spieler *spieler2ptr = &spieler2;
-    
     ausgeben(spielfeldptr); //Aufruf der Funktion "ausgeben" dadurch wird das Spielfeld in der Konsole ausgegeben
+    
+    int iUeberprueftes = 1;
+    
+    while(iUeberprueftes == 1){
+        int iEingelesen = einlesen(spieler1ptr);
+        printf("Eingelesene: %d \n", iEingelesen);
+        iUeberprueftes = ueberpuefen1(iEingelesen);
+        printf("Überprüfte: %d \n", iUeberprueftes);
+    }
+
     
     return 0;
 }
