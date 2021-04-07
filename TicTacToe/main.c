@@ -6,7 +6,7 @@
 //
 
 #include <stdio.h>
-
+// NOCH NICHT FERTIG
 struct Spieler{
     char cZeichen; //X oder O
     int iIndexer; //Index vom Spieler "1" oder "2"
