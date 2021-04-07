@@ -9,13 +9,18 @@
 
 struct Spieler{
     char cZeichen; //X oder O
-    int iIndex; //Index vom Spieler
-    
-    
+    int iIndexer; //Index vom Spieler
+};
+
+struct Spielfeld{
+    int iFeld[3][3];
 };
 
 
 int main(int argc, const char * argv[]) {
 
+    struct Spielfeld spielfeldObjekt;
+    struct Spielfeld *spielfeldptr = &spielfeldObjekt;
+    
     return 0;
 }
