@@ -57,11 +57,19 @@ int ueberpruefen2(int pos, struct Spielfeld *spielfeld){
     pos--;                              //Position um 1 verringern //8-1 = 7 //da Array imme rmit 0 beginnen
     int x = pos %3;                     //Modulo Opperator 4/3 = 1Rest1 Modulo ist nur der Rest also ist 7 %3 = 1
     int y = pos / 3;                    //7/3 = 2 //da mit Ganzzahlen gerechnet wird
-    if(spielfeld->iFeld[y][x] != 0){    //Überprüfen ob Feld schon belegt ist 
+    if(spielfeld->iFeld[y][x] != 0){    //Überprüfen ob Feld schon belegt ist
         return 1;
     }else{
         return 0;
     }
+}
+
+void einsetzen(struct Spieler *aktuellerSpieler, int pos, struct Spielfeld *spielfeld){
+    pos--;                              //Position um 1 verringern //8-1 = 7 //da Array imme rmit 0 beginnen
+    int x = pos %3;                     //Modulo Opperator 4/3 = 1Rest1 Modulo ist nur der Rest also ist 7 %3 = 1
+    int y = pos / 3;                    //7/3 = 2 //da mit Ganzzahlen gerechnet wird
+    
+    
 }
 
 int main(int argc, const char * argv[]) {
@@ -87,12 +95,14 @@ int main(int argc, const char * argv[]) {
     ausgeben(spielfeldptr); //Aufruf der Funktion "ausgeben" dadurch wird das Spielfeld in der Konsole ausgegeben
     
     int iUeberprueftes = 1;
-    
-    while(iUeberprueftes == 1){
+    int iUeberprueftes2 = 1;
+    while(iUeberprueftes == 1 || iUeberprueftes2 == 1){
         int iEingelesen = einlesen(spieler1ptr);
         printf("Eingelesene: %d \n", iEingelesen);
         iUeberprueftes = ueberpuefen1(iEingelesen);
-        printf("Überprüfte: %d \n", iUeberprueftes);
+        printf("Überprüfte1: %d \n", iUeberprueftes);
+        iUeberprueftes2 = ueberpruefen2(iEingelesen, spielfeldptr);
+        printf("Überprüfte2: %d \n", iUeberprueftes2);
     }
 
     
