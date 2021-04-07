@@ -21,6 +21,7 @@ void ausgeben(struct Spielfeld *spielfeldAusgebenptr){//Funktion Will einen Poin
         for(int j = 0; j < 3; j++){
             printf("%d ", spielfeldAusgebenptr->iFeld[i][j]);
         }
+        printf("\n");   //Spielfeld wird in 3x3 Optik ausgegeben
     }
     printf("\n");
 }
