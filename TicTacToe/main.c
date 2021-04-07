@@ -69,6 +69,8 @@ void einsetzen(struct Spieler *aktuellerSpieler, int pos, struct Spielfeld *spie
     int x = pos %3;                     //Modulo Opperator 4/3 = 1Rest1 Modulo ist nur der Rest also ist 7 %3 = 1
     int y = pos / 3;                    //7/3 = 2 //da mit Ganzzahlen gerechnet wird
     
+    spielfeld->iFeld[y][x] = aktuellerSpieler->iIndexer;
+    
     
 }
 
@@ -92,19 +94,25 @@ int main(int argc, const char * argv[]) {
     spieler1.cZeichen = 'O';
     spieler1.iIndexer = 2;
     struct Spieler *spieler2ptr = &spieler2;
+    
+    struct Spieler *aktuellerSpieler = spieler1ptr;
+    
     ausgeben(spielfeldptr); //Aufruf der Funktion "ausgeben" dadurch wird das Spielfeld in der Konsole ausgegeben
     
     int iUeberprueftes = 1;
     int iUeberprueftes2 = 1;
+    int iEingelesen;
     while(iUeberprueftes == 1 || iUeberprueftes2 == 1){
-        int iEingelesen = einlesen(spieler1ptr);
+        iEingelesen = einlesen(spieler1ptr);
         printf("Eingelesene: %d \n", iEingelesen);
         iUeberprueftes = ueberpuefen1(iEingelesen);
         printf("Überprüfte1: %d \n", iUeberprueftes);
         iUeberprueftes2 = ueberpruefen2(iEingelesen, spielfeldptr);
         printf("Überprüfte2: %d \n", iUeberprueftes2);
     }
-
+    
+    einsetzen(aktuellerSpieler, iEingelesen, spielfeldptr);
+    ausgeben(spielfeldptr); //Aufruf der Funktion "ausgeben" dadurch wird das Spielfeld in der Konsole ausgegeben
     
     return 0;
 }
