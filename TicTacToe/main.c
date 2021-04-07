@@ -18,20 +18,27 @@ struct Spielfeld{
 
 void ausgeben(struct Spielfeld *spielfeldAusgebenptr){//Funktion Will einen Pointer auf ein Spielfeld struct
     for(int i = 0; i < 3; i++){         //Durch For-Schliefe kann jedes einzelne Feld ausgegeben werden
+        printf("| ");
         for(int j = 0; j < 3; j++){
-
             if(spielfeldAusgebenptr->iFeld[i][j] == 1){
-                printf("X ");
+                printf("X | ");   //Bei Feld von Spieler 1 wird ein X ausgegeben
             }
             else if(spielfeldAusgebenptr->iFeld[i][j] == 2){
-                printf("O ");
+                printf("O | ");   //Bei Feld von Spieler 2 wird ein O ausgegeben
             }else{
-                printf(" ");
+                printf(" | ");    //Falss keine Eingabe richtig war oder leer ist wird nichts ausgegeben
             }
         }
         printf("\n");   //Spielfeld wird in 3x3 Optik ausgegeben
     }
     printf("\n");
+}
+
+int einlesen(struct Spieler *aktuellerSpieler){ //einlesen der Feldkoordinate
+    int iPosition;
+    printf("Bitte gib die Position an wo du hinsetzten möchtest: ");
+    scanf("%d", &iPosition);
+    return iPosition;
 }
 
 
