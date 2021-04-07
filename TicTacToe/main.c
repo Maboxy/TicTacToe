@@ -19,7 +19,15 @@ struct Spielfeld{
 void ausgeben(struct Spielfeld *spielfeldAusgebenptr){//Funktion Will einen Pointer auf ein Spielfeld struct
     for(int i = 0; i < 3; i++){         //Durch For-Schliefe kann jedes einzelne Feld ausgegeben werden
         for(int j = 0; j < 3; j++){
-            printf("%d ", spielfeldAusgebenptr->iFeld[i][j]);
+
+            if(spielfeldAusgebenptr->iFeld[i][j] == 1){
+                printf("X ");
+            }
+            else if(spielfeldAusgebenptr->iFeld[i][j] == 2){
+                printf("O ");
+            }else{
+                printf(" ");
+            }
         }
         printf("\n");   //Spielfeld wird in 3x3 Optik ausgegeben
     }
