@@ -36,7 +36,7 @@ void ausgeben(struct Spielfeld *spielfeldAusgebenptr){//Funktion Will einen Poin
 
 int einlesen(struct Spieler *aktuellerSpieler){ //einlesen der Feldkoordinate
     int iPosition;
-    printf("Bitte gib die Position an wo du hinsetzten möchtest: ");
+    printf("Bitte gib die Position an wo du hinsetzten möchtest (nur Ganzzahlen): ");
     scanf("%d", &iPosition);
     return iPosition;
 }
@@ -47,14 +47,19 @@ int ueberpuefen1(int pos){  //Auf korrekte Eingabe Überprüfen
     }
     else if(pos > 9){
         return 1;
-    }else if(pos ){
-        
     }
     else{
         return 0;
     }
 }
 
+int ueberpruefen2(int pos, struct Spielfeld *spielfeld){
+    int x = 
+    int y =
+    if(spielfeld->iFeld[][]){
+        
+    }
+}
 
 int main(int argc, const char * argv[]) {
     printf("Welcome to TictacToe in C \n");
