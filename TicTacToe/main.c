@@ -20,7 +20,13 @@ struct Spielfeld{
 int main(int argc, const char * argv[]) {
 
     struct Spielfeld spielfeldObjekt;
-    struct Spielfeld *spielfeldptr = &spielfeldObjekt;
+    struct Spielfeld *spielfeldptr = &spielfeldObjekt;  //bekommen die Speicheraddresse von spielfeldObjekt
+    
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++){
+            spielfeldptr->iFeld[i][j] = 0;
+        }
+    }
     
     return 0;
 }
