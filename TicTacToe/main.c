@@ -54,7 +54,7 @@ int ueberpuefen1(int pos){  //Auf korrekte Eingabe Überprüfen
 }
 
 int ueberpruefen2(int pos, struct Spielfeld *spielfeld){
-    int x = 
+    int x = pos %3; //Modulo Opperator 4/3 = 1Rest1 Modulo ist nur der Rest
     int y =
     if(spielfeld->iFeld[][]){
         
