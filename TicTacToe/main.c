@@ -6,7 +6,6 @@
 //
 
 #include <stdio.h>
-// NOCH NICHT FERTIG
 struct Spieler{
     char cZeichen; //X oder O
     int iIndexer; //Index vom Spieler "1" oder "2"
@@ -78,11 +77,39 @@ int unentschieden(struct Spielfeld *spielfeld){
     for(int i = 0; i < 3; i++){ //Spielfeld wird "Erstellt und alle einzelnen Feld 0 gesetzt
         for(int j = 0; j < 3; j++){
             if(spielfeld->iFeld[i][j] == 0){
-                return 0;   //es gibt ein Feld mit eienr 0
+                return 0;   //es gibt ein Feld mit einer 0
             }
         }
     }
     return 1;   //Unentscheiden
+}
+
+int gewonnen(struct Spielfeld *spielfeld){
+    // gewonnen ist, wenn 3 gleiche Zahlen != 0 in einer Reihe stehen
+    // senkrecht,   wagerecht,  diagonal
+    //  0, 1, 2   , 0, 1, 2   , (00 11 22) (02 11 20)
+    
+    for(int i = 0; i < 3; i++){
+        if(spielfeld->iFeld[i][0] == spielfeld->iFeld[i][1] && spielfeld->iFeld[i][0] == spielfeld->iFeld[i][2] && spielfeld->iFeld[i][0] != 0 ){
+            return 1;   //gewonnen wagerecht
+        }
+    }
+    
+    for(int i = 0; i < 3; i++){
+        if(spielfeld->iFeld[0][i] == spielfeld->iFeld[1][i] && spielfeld->iFeld[0][i] == spielfeld->iFeld[2][i] && spielfeld->iFeld[0][i] != 0 ){
+            return 1;   //gewonnen senkrecht
+        }
+    }
+    
+    if(spielfeld->iFeld[0][0] == spielfeld->iFeld[1][1] && spielfeld->iFeld[0][0] == spielfeld->iFeld[2][2] && spielfeld->iFeld[0][0] != 0 ){
+        return 1;   //gewonnen diagonal
+    }
+    
+    if(spielfeld->iFeld[0][2] == spielfeld->iFeld[1][1] && spielfeld->iFeld[0][2] == spielfeld->iFeld[2][2] && spielfeld->iFeld[0][2] != 0 ){
+        return 1;   //gewonnen diagonal
+    }
+    
+    return 0;   //niemand hat gewonnen
 }
 
 
@@ -124,16 +151,25 @@ int main(int argc, const char * argv[]) {
         }
         einsetzen(aktuellerSpieler, iEingelesen, spielfeldptr);
         
-        // Überprüfen ob unentschieden
-        // X X X
-        // X X X
-        // X X X
         // Überprüfen ob gewonnen
+        int iGewonnen = gewonnen(spielfeldptr);
+        if(iGewonnen == 1){
+            ausgeben(spielfeldptr);
+            printf("Der Spieler %c hat gewonnen \n", aktuellerSpieler->cZeichen);
+            break;
+        }
         
+        // Überprüfen ob unentschieden
+        int iIstunentscheiden = unentschieden(spielfeldptr);
+        if(iIstunentscheiden == 1){
+            ausgeben(spielfeldptr);
+            printf("IHR HABT UNENTSCHEIDEN GESPIELT \n");
+            break;
+        }
+
         // aktuellen Spieler wechseln
         if(aktuellerSpieler == spieler1ptr){
             aktuellerSpieler = spieler2ptr;
-            
         }
         else{
             aktuellerSpieler = spieler1ptr;
