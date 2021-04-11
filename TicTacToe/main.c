@@ -2,7 +2,7 @@
 //  main.c
 //  TicTacToe
 //
-//  Created by Paul Hackenberg on 07.04.21.
+//  Created by Paul Hackenberg / maboxy on 07.04.21.
 //
 
 #include <stdio.h>
@@ -36,7 +36,7 @@ void ausgeben(struct Spielfeld *spielfeldAusgebenptr){//Funktion Will einen Poin
 
 int einlesen(struct Spieler *aktuellerSpieler){ //einlesen der Feldkoordinate
     int iPosition;
-    printf("Bitte gib die Position an wo du hinsetzten möchtest (nur Ganzzahlen): ");
+    printf("Bitte gib die Position an wo du hinsetzten möchtest (1-9): ");
     scanf("%d", &iPosition);
     return iPosition;
 }
@@ -97,22 +97,23 @@ int main(int argc, const char * argv[]) {
     
     struct Spieler *aktuellerSpieler = spieler1ptr;
     
-    ausgeben(spielfeldptr); //Aufruf der Funktion "ausgeben" dadurch wird das Spielfeld in der Konsole ausgegeben
+    while(1 == 1){
+        ausgeben(spielfeldptr); //Aufruf der Funktion "ausgeben" dadurch wird das Spielfeld in der Konsole ausgegeben
+        int iUeberprueftes = 1;
+        int iUeberprueftes2 = 1;
+        int iEingelesen;
+        while(iUeberprueftes == 1 || iUeberprueftes2 == 1){
+            iEingelesen = einlesen(spieler1ptr);
+            printf("Eingelesene: %d \n", iEingelesen);
+            iUeberprueftes = ueberpuefen1(iEingelesen);
+            printf("Überprüfte1: %d \n", iUeberprueftes);
+            iUeberprueftes2 = ueberpruefen2(iEingelesen, spielfeldptr);
+            printf("Überprüfte2: %d \n", iUeberprueftes2);
+        }
+        
+        einsetzen(aktuellerSpieler, iEingelesen, spielfeldptr);
     
-    int iUeberprueftes = 1;
-    int iUeberprueftes2 = 1;
-    int iEingelesen;
-    while(iUeberprueftes == 1 || iUeberprueftes2 == 1){
-        iEingelesen = einlesen(spieler1ptr);
-        printf("Eingelesene: %d \n", iEingelesen);
-        iUeberprueftes = ueberpuefen1(iEingelesen);
-        printf("Überprüfte1: %d \n", iUeberprueftes);
-        iUeberprueftes2 = ueberpruefen2(iEingelesen, spielfeldptr);
-        printf("Überprüfte2: %d \n", iUeberprueftes2);
+
     }
-    
-    einsetzen(aktuellerSpieler, iEingelesen, spielfeldptr);
-    ausgeben(spielfeldptr); //Aufruf der Funktion "ausgeben" dadurch wird das Spielfeld in der Konsole ausgegeben
-    
     return 0;
 }
