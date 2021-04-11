@@ -70,12 +70,24 @@ void einsetzen(struct Spieler *aktuellerSpieler, int pos, struct Spielfeld *spie
     int y = pos / 3;                    //7/3 = 2 //da mit Ganzzahlen gerechnet wird
     
     spielfeld->iFeld[y][x] = aktuellerSpieler->iIndexer;
-    
-    
 }
 
+int unentschieden(struct Spielfeld *spielfeld){
+    // Überprüfen ob Feld != 0 ist oder ob ein Feld == 0 ist
+    
+    for(int i = 0; i < 3; i++){ //Spielfeld wird "Erstellt und alle einzelnen Feld 0 gesetzt
+        for(int j = 0; j < 3; j++){
+            if(spielfeld->iFeld[i][j] == 0){
+                return 0;   //es gibt ein Feld mit eienr 0
+            }
+        }
+    }
+    return 1;   //Unentscheiden
+}
+
+
 int main(int argc, const char * argv[]) {
-    printf("Welcome to TictacToe in C \n");
+    printf("-_- Welcome to TictacToe in C :) -_- \n");
     struct Spielfeld spielfeldObjekt;
     struct Spielfeld *spielfeldptr = &spielfeldObjekt;  //bekommen die Speicheraddresse von spielfeldObjekt
     
@@ -91,13 +103,13 @@ int main(int argc, const char * argv[]) {
     struct Spieler *spieler1ptr = &spieler1; //Pointer von Spieler1 in die ptr Variable "laden"
     
     struct Spieler spieler2;    //Spieler 2 initialisieren
-    spieler1.cZeichen = 'O';
-    spieler1.iIndexer = 2;
+    spieler2.cZeichen = 'O';
+    spieler2.iIndexer = 2;
     struct Spieler *spieler2ptr = &spieler2;
     
     struct Spieler *aktuellerSpieler = spieler1ptr;
     
-    while(1 == 1){
+    while(1 == 1){ // Eine Spielrunde
         ausgeben(spielfeldptr); //Aufruf der Funktion "ausgeben" dadurch wird das Spielfeld in der Konsole ausgegeben
         int iUeberprueftes = 1;
         int iUeberprueftes2 = 1;
@@ -110,10 +122,23 @@ int main(int argc, const char * argv[]) {
             iUeberprueftes2 = ueberpruefen2(iEingelesen, spielfeldptr);
             printf("Überprüfte2: %d \n", iUeberprueftes2);
         }
-        
         einsetzen(aktuellerSpieler, iEingelesen, spielfeldptr);
-    
-
+        
+        // Überprüfen ob unentschieden
+        // X X X
+        // X X X
+        // X X X
+        // Überprüfen ob gewonnen
+        
+        // aktuellen Spieler wechseln
+        if(aktuellerSpieler == spieler1ptr){
+            aktuellerSpieler = spieler2ptr;
+            
+        }
+        else{
+            aktuellerSpieler = spieler1ptr;
+        }
+        
     }
     return 0;
 }
